@@ -8,10 +8,10 @@ let verse (x:int) =
     | _ -> String.Format("{0} bottles of beer on the wall, {0} bottles of beer.\nTake one down and pass it around, {1} bottles of beer on the wall.\n", x, (x-1))
     
 let verses (start:int) (stop:int) : string =
-    seq {stop..start}
-        |> Seq.rev
-        |> Seq.map(fun i -> sprintf "%s\n" (verse i))
-        |> Seq.fold(fun state v-> state + v) ""
+    seq {start .. -1 .. stop}
+        |> Seq.map verse
+        |> String.concat "\n"
+        |> sprintf "%s\n" //need this because ``Test several verses`` expects an additional \n at the end that concat doesnt provide.
     
 let sing =
     verses 99 0
