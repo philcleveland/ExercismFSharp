@@ -11,7 +11,7 @@ let UranusYear = EarthYear * 84.016846m
 let NeptuneYear = EarthYear * 164.79132m
 
 type Planet =
-    Earth
+    | Earth
     | Mercury
     | Venus
     | Mars
@@ -20,13 +20,14 @@ type Planet =
     | Uranus
     | Neptune
     
-let spaceAge (p:Planet) (age:decimal) =
-    match p with
-    | Planet.Earth -> Math.Round(age / EarthYear, 2)
-    | Planet.Mercury -> Math.Round(age / MercuryYear, 2)
-    | Planet.Venus -> Math.Round(age / VenusYear, 2)
-    | Planet.Mars -> Math.Round(age / MarsYear, 2)
-    | Planet.Jupiter -> Math.Round(age / JupiterYear, 2)
-    | Planet.Saturn -> Math.Round(age / SaturnYear, 2)
-    | Planet.Uranus -> Math.Round(age / UranusYear, 2)
-    | Planet.Neptune -> Math.Round(age / NeptuneYear, 2)
+let spaceAge (p) (age:decimal) =
+    let coef = match p with
+               | Earth -> EarthYear
+               | Mercury ->MercuryYear
+               | Venus -> VenusYear
+               | Mars -> MarsYear
+               | Jupiter -> JupiterYear
+               | Saturn -> SaturnYear
+               | Uranus -> UranusYear
+               | Neptune -> NeptuneYear
+    Math.Round(age / coef, 2)

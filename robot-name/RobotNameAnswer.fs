@@ -1,5 +1,7 @@
 module RobotName
 open System
+open System.Text
+
 type Robot() =
     //digit 48-57
     //uppercase letter 65-90
@@ -8,8 +10,8 @@ type Robot() =
     
     let createName() =
         let rand = new System.Random((int)DateTime.Now.Ticks)
-        ([for i in 1..2 do yield rand.Next(65, 90) |> Convert.ToChar |> Char.ToString] |> String.concat "") + 
-        ([for i in 1..3 do yield rand.Next(48, 57) |> Convert.ToChar |> Char.ToString] |> String.concat "")
+        ([for i in 1..2 do yield char(rand.Next(65, 90)) |> Char.ToString] |> String.concat "") + 
+        rand.Next(100, 999).ToString()
     
     let originalName = createName()     
     
