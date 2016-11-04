@@ -1,4 +1,5 @@
-#r @"packages/FAKE/tools/FakeLib.dll"
+#r @"./packages/FAKE/tools/FakeLib.dll"
+
 open Fake.FscHelper
 open Fake
 open Fake.Testing.NUnit3
